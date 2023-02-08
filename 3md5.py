@@ -1,6 +1,8 @@
 #MD5
 import hashlib
-password = "texto"
-md5 = hashlib.md5(password.encode())
-print("The corresponding MD5 hash is : ")
-print(md5.hexdigest());
+import random
+for x in range(1,100000):
+ i = random.randrange(1,1000)
+ password = str(i)
+ md5 = hashlib.md5(password.encode())
+ print("El hash para el numero " + str(i) + " es " + md5.hexdigest())
