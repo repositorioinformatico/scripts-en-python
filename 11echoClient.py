@@ -1,11 +1,9 @@
-# echo_client.py
 import socket
-
-host = socket.gethostname()    
-port = 12345                   # The same port as used by the server
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((host, port))
-s.sendall(b'Hello, world')
-data = s.recv(1024)
-s.close()
-print('Received', repr(data))
+HOST = '127.0.0.1'
+PORT = 5000
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect((HOST, PORT))
+    #s.sendall(b'Hello, world')
+    s.sendall(b'bye')
+    data = s.recv(1024)
+print('Echoing: ', repr(data))

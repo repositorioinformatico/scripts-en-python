@@ -1,15 +1,16 @@
-# echo_server.py
 import socket
 
-host = ''        # Symbolic name meaning all available interfaces
-port = 12345     # Arbitrary non-privileged port
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((host, port))
-s.listen(1)
-conn, addr = s.accept()
-print('Connected by', addr)
-while True:
-    data = conn.recv(1024)
-    if not data: break
-    conn.sendall(data)
-conn.close()
+HOST = '127.0.0.1'
+PORT = 5000
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind((HOST, PORT))
+    s.listen()
+    conn, addr = s.accept()
+    with conn:
+        while True:
+            data = conn.recv(1024)
+            if data.decode() == "bye":
+                break
+            conn.sendall(data)
+            conn, addr = s.accept()
