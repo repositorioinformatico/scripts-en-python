@@ -6,4 +6,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.sendall(b'Hello, world')
     #s.sendall(b'bye')
     data = s.recv(1024)
-print('Echoing: ', repr(data))
+print('Devolviendo como un eco lo siguiente: ', repr(data))
