@@ -1,16 +1,12 @@
 # client.py
-
 import socket                   # Import socket module
-
 s = socket.socket()             # Create a socket object
 host = socket.gethostname()     # Get local machine name
 port = 60000                    # Reserve a port for your service.
-
 s.connect((host, port))
 #s.send("Hello server!")
 message='Hello server'
 s.send(message.encode('utf-8'))
-
 print('no llega')
 with open('received_file', 'wb') as f:
     print('file opened')
@@ -22,7 +18,6 @@ with open('received_file', 'wb') as f:
             break
         # write data to a file
         f.write(data)
-
 f.close()
 print('Successfully get the file')
 s.close()
